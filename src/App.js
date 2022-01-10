@@ -9,7 +9,8 @@ function App() {
 
   const [mounted, setMounted] = useState(false);
   const [dataUsers, setDataUsers] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState('');
+
   const userEmail = localStorage.getItem('authenticated_email');
   if (!mounted) {
 
@@ -32,6 +33,7 @@ function App() {
   return (
 
     <div className="App">
+
       {isAuthenticated ? <div>
         <Application dataUsers={dataUsers} userEmail={userEmail} />
       </div> :

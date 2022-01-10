@@ -1,6 +1,17 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+@media (max-width: 568px){
+
+
+.textarea{
+    max-width: 250px !important;
+}
+input{
+    max-width: 250px !important;
+}
+
+}
 margin-top:3rem;
 display: flex;
 justify-content:center;

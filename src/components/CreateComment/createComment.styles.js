@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  @media (max-width: 568px){
+
+
+    .textarea{
+        max-width: 250px !important;
+    }
+
+}
 margin-top: 3rem;
 width: 100%;
 display: flex;
@@ -29,7 +37,8 @@ form{
     }
     input{
         padding: 0.5rem;
-        min-width: 400px;
+        max-width: 400px;
+        min-width: 200px;
         text-align: center;
         border: none;
         border-bottom: 1px solid blue;

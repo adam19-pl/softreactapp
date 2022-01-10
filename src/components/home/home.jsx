@@ -67,7 +67,7 @@ const Home = () => {
                                 <th scope="row">{project.id}</th>
                                 <td>{project.title}</td>
                                 <td>{Moment(project.started).format('DD-MM-YYYY')}</td>
-                                <td>{project.endeded == '' ? '' : project.ended}</td>
+                                <td>{project.endeded === '' || !project.ended ? '' : Moment(project.ended).format('DD-MM-YYYY')}</td>
                                 <td>{project.status === "(0, 'new')" || project.status === 0 ? "New" : "Old"}</td>
                                 <td><Link to="/comment" state={{ from: project }}>Comment</Link>
                                     <Link to="/edit" state={{ from: project }}>Edit</Link>

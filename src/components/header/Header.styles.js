@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  @media (max-width: 568px){
+
+justify-content: center;
+  }
 display: flex;
 flex-wrap: wrap;
 width: 100%;
@@ -11,9 +15,12 @@ align-items: center;
 color: white;
 
 button{
+    color: black!important;
+    font-weight: 500;
     min-width: 70px;
     margin-right: 1rem;
-        background-color: rgba(3, 198, 252,1);
+        background-color: rgb(255,255,255);
+        
         border: none;
         border-radius: 16px;
         padding: 0.5rem;
@@ -21,6 +28,7 @@ button{
         transition: 500ms;
         &:hover{
             background-color: rgba(3, 123, 252,0.8);
+            color: white!important;
             cursor: pointer;
         }
 }

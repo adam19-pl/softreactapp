@@ -30,12 +30,12 @@ axiosInstance.interceptors.response.use(
 
         if (
             error.response.status === 401 &&
-            originalRequest.url === baseURL + 'token/refresh/'
+            originalRequest.url === baseURL + 'api/token/refresh/'
         ) {
-            window.location.href = '/login/';
+            window.location.href = '/logout/';
             return Promise.reject(error);
         }
-
+        //  API TOKEN --- problem w tym ze przy url nie ma dobrej sciezki dla endpointu : api/token/refresh/
         if (
             error.response.data.code === 'token_not_valid' &&
             error.response.status === 401 &&
@@ -52,7 +52,7 @@ axiosInstance.interceptors.response.use(
 
                 if (tokenParts.exp > now) {
                     return axiosInstance
-                        .post('/token/refresh/', { refresh: refreshToken })
+                        .post('api/token/refresh/', { refresh: refreshToken })
                         .then((response) => {
                             localStorage.setItem('access_token', response.data.access);
                             localStorage.setItem('refresh_token', response.data.refresh);
@@ -69,11 +69,11 @@ axiosInstance.interceptors.response.use(
                         });
                 } else {
                     console.log('Refresh token is expired', tokenParts.exp, now);
-                    window.location.href = '/login/';
+                    window.location.href = '/logout/';
                 }
             } else {
                 console.log('Refresh token not available.');
-                window.location.href = '/login/';
+                window.location.href = '/logout/';
             }
         }
 
