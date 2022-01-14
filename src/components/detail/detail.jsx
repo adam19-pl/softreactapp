@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, } from "react";
 import { useLocation } from 'react-router-dom'
 import axiosInstance from "../../axios";
 import { Wrapper } from "./detail.styles";
@@ -7,13 +7,14 @@ import Moment from 'moment';
 const Detail = () => {
     const location = useLocation()
     const { from } = location.state
-    const [mounted, setMounted] = useState(false);
+    const [mounted, setMounted] = useState('');
     const [dataProject, setDataProject] = useState('');
     const [comments, setComments] = useState([]);
 
+
     if (!mounted) {
         axiosInstance.get('projects/' + from.id).then((res) => {
-            setDataProject(res.data);
+            setDataProject(res.data[0]);
 
         }).catch((error) => {
             if (error.response.status === 401) {
