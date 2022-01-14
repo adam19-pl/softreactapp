@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Wrapper } from './createprojectconfirm.styles';
 import Moment from 'moment';
@@ -7,7 +7,7 @@ import axiosInstance from "../../../axios";
 
 const CreateProjectConfirm = ({ dataUsers }) => {
 
-
+    const [backendError, setBackendError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
     const values = location.state.values;
@@ -19,11 +19,16 @@ const CreateProjectConfirm = ({ dataUsers }) => {
         axiosInstance.post('projects/', values).then((res) => {
             navigate('/');
         }).catch((error) => {
-            console.log(error.response);
+            if (error.response.status === 400) {
+                setBackendError(error.response.data.Error);
+            }
         });
     }
+    console.log('to są values', values);
+    console.log(information);
     return (
         <Wrapper>
+            {backendError === '' ? null : <div className="backend-error">{backendError}</div>}
             <h2>Title : {location.state.values.title}</h2>
             <h2>Description : {location.state.values.description}</h2>
             <h2>Started : {Moment(location.state.values.started).format('DD-MM-YYYY')}</h2>

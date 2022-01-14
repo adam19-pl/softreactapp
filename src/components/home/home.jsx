@@ -20,6 +20,15 @@ const Home = () => {
             }
             console.log(error.response);
         });
+        axiosInstance.get('projects/1/').then((res) => {
+            console.log(res);
+
+        }).catch((error) => {
+            if (error.response.status === 401) {
+                console.log(error.response);
+            }
+            console.log(error.response);
+        });
     }
 
     useEffect(() => {

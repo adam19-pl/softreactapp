@@ -28,6 +28,9 @@ const EditForm = ({ from, dataUsers }) => {
                     if (error.response.status === 403) {
                         setUpdateError("You don't have acces to update this projcet.");
                     }
+                    if (error.response.status === 400) {
+                        setUpdateError(error.response.data.Error);
+                    }
                 });
             }
             }

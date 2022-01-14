@@ -18,17 +18,18 @@ const User = ({ dataUsers, userEmail }) => {
         <Wrapper>
             <h2>Edit User</h2>
 
-            <Formik enableReinitialize initialValues={{ email: information[0].email, firstname: information[0].firstname, lastname: information[0].lastname, age: information[0].age, gender: information[0].gender, phone: information[0].phone === null ? '' : information[0].phone }}
+            <Formik enableReinitialize initialValues={{ email: information[0].email, password: '', firstname: information[0].firstname, lastname: information[0].lastname, age: information[0].age, gender: information[0].gender, phone: information[0].phone === null ? '' : information[0].phone }}
                 validationSchema={Yup.object({
                     email: Yup.string().email('Invalid email address').required('This field is required'),
-                    firstname: Yup.string().min(2, 'The firstname must be longer than 2 characters').required('This field is required'),
-                    lastname: Yup.string().min(2, 'The lastname must be longer than 2 characters').required('This field is required'),
+                    password: Yup.string().min(6, 'The password must be longer than 6 characters').max(64, 'The maximum length of password is 64 characters').required('This field is requred'),
+                    firstname: Yup.string().min(2, 'The firstname must be longer than 2 characters').matches(/^[A-Za-z ]*$/, 'Please enter valid name').required('This field is required'),
+                    lastname: Yup.string().min(2, 'The lastname must be longer than 2 characters').matches(/^[A-Za-z ]*$/, 'Please enter valid name').required('This field is required'),
                     age: Yup.number().min(1, 'Min value is 1').max(100, 'Max value is 100').required('This field is required'),
                     gender: Yup.string().oneOf(['0', '1'], 'Invalid gender choice').required('This field is required'),
                     phone: Yup.string().matches(
                         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
                         "Phone number is not valid"
-                    )
+                    ).min(9, 'Phone number must have 9 numbers minimum').max(9, 'Phone number must have 9 numbers maximum')
                 })}
                 onSubmit={(values) => {
                     axiosInstance.put('users/' + information[0].id + '/', values).then((res) => {
@@ -56,6 +57,12 @@ const User = ({ dataUsers, userEmail }) => {
                         name="firstname"
                         type="text"
                         placeholder="Your name"
+                    />
+                    <MyInput
+                        label="Password"
+                        name="password"
+                        type="password"
+                        placeholder="password"
                     />
 
                     <MyInput

@@ -38,11 +38,11 @@ form{
     display: flex;
     flex-direction: column;
 
-    .email-error{
+    .backend-error{
+        max-width: 70%;
+        margin: 0.3rem auto;
         font-size: 0.8rem;
         color: red;
-        margin-top: 0.3rem;
-        margin-bottom: 0.3rem;
         font-style: italic;
         font-weight: 500;
     }
@@ -57,6 +57,7 @@ form{
     }
 
     input{
+        margin:0 auto;
         padding: 0.5rem;
         width: 400px;
         text-align: center;

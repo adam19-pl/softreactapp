@@ -14,11 +14,11 @@ const CreateForm = ({ dataUsers, userInformation }) => {
             title: Yup.string().min(6, 'The title must be longer than 6 characters').required('This field is required'),
             description: Yup.string().min(6, 'The description field must be longer than 6 characters').required('This field is requred'),
             started: Yup.date().required('This field is required'),
-            owner: Yup.string().required('This field is required'),
+            owner: Yup.string().matches(userInformation[0].id, 'The value is not correct.').required('This field is required'),
             employers: Yup.array().required("This field is required")
         })}
         onSubmit={(values) => {
-            navigate('/create/confirm', { state: { values } })
+            navigate('/create/confirm/', { state: { values } })
         }}
     >
         <Form>
@@ -46,9 +46,11 @@ const CreateForm = ({ dataUsers, userInformation }) => {
                 name="employers"
                 type="select"
                 multiple={true}
+
+
             >
                 {dataUsers.map(user => {
-                    return (<option key={user.id} value={user.id}>{user.email}</option>)
+                    return (userInformation[0].id === user.id ? <option selected key={user.id} value={user.id}>{user.email}</option> : <option key={user.id} value={user.id}>{user.email}</option>)
                 })}
 
             </MySelect>
@@ -56,7 +58,6 @@ const CreateForm = ({ dataUsers, userInformation }) => {
                 label="owner"
                 name="owner"
                 type="select">
-                <option value="">Choose owner</option>
                 <option defaultValue={true} value={userInformation[0].id}>{userInformation[0].email}</option>
             </MySelect>
 

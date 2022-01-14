@@ -8,6 +8,11 @@ align-items: center;
 text-align: center;
 flex-direction: column;
 
+.backend-error{
+    font-size: 1.5rem;
+    color: red;
+    margin-bottom: 0.5rem;
+}
 a{
     text-decoration:none;
     width: 140px;

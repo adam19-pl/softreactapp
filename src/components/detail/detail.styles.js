@@ -32,7 +32,8 @@ flex-direction: column;
 }
 
 .comment{
-    width: 100%;
+    word-break: break-all;
+    max-width: 500px;
     margin: 1rem auto;
     padding: 1rem;
     border: 1px solid grey;

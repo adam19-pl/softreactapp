@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
 @media (max-width: 568px){
 
 
+
 .textarea{
     max-width: 250px !important;
 }
@@ -35,6 +36,14 @@ a{
             cursor: pointer;
         }
 
+}
+.update-error{
+    margin: 0 auto;
+    max-width:300px;
+    min-width: 200px;
+    font-size: 1.5rem;
+    color: red;
+    margin-bottom: 0.5rem;
 }
 form{
     display: flex;
